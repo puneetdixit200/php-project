@@ -24,6 +24,8 @@ This web application provides an HTML/CSS/JavaScript (jQuery) registration form 
 
 **How to run locally (Windows PowerShell):**
 
+### Option 1: Using PHP Built-in Server
+
 1. Open PowerShell and change into the project directory:
 
 ```powershell
@@ -37,6 +39,43 @@ php -S localhost:8000
 ```
 
 3. Open your browser and go to `http://localhost:8000/index.html`.
+
+### Option 2: Using Docker
+
+1. Make sure Docker is installed and running
+
+2. Build and run with Docker Compose:
+
+```powershell
+docker-compose up -d
+```
+
+3. Open your browser and go to `http://localhost:8080/index.html`
+
+4. To stop the container:
+
+```powershell
+docker-compose down
+```
+
+**Docker Commands:**
+
+```powershell
+# Build the Docker image
+docker build -t php-registration-app .
+
+# Run the container
+docker run -d -p 8080:80 --name php-app php-registration-app
+
+# View logs
+docker logs php-app
+
+# Stop the container
+docker stop php-app
+
+# Remove the container
+docker rm php-app
+```
 
 4. Fill out the form and click **Register**. You'll see a success message, and data is saved to `registrations.txt`.
 
@@ -68,6 +107,50 @@ php -S localhost:8000
 - `registrations.txt` will persist in the Repl storage
 - Your app gets a public URL like `https://php-project.username.repl.co`
 
+---
+
+## 🐳 Deploying to Render.com with Docker
+
+### Option 1: Automatic Deployment (Recommended)
+
+1. Go to https://render.com and sign up/login
+2. Click "New +" → "Blueprint"
+3. Connect your GitHub account
+4. Select repository: `puneetdixit200/php-project`
+5. Render will automatically detect `render.yaml` and deploy!
+6. Your app will be live at: `https://php-registration-app.onrender.com`
+
+### Option 2: Manual Docker Deployment
+
+1. Go to https://render.com
+2. Click "New +" → "Web Service"
+3. Connect GitHub repository: `puneetdixit200/php-project`
+4. Configure:
+   - **Environment**: Docker
+   - **Region**: Oregon (or your choice)
+   - **Branch**: main
+   - **Dockerfile Path**: ./Dockerfile
+5. Click "Create Web Service"
+6. Wait for deployment (3-5 minutes)
+
+**Render Features:**
+- ✅ Free tier available
+- ✅ Automatic HTTPS
+- ✅ Auto-deploy on git push
+- ✅ Built-in health checks
+- ✅ Custom domain support
+
+---
+
+## 📦 Docker Files Included:
+
+- `Dockerfile` - Container configuration with PHP 8.3 + Apache
+- `docker-compose.yml` - Local development orchestration
+- `.dockerignore` - Excludes unnecessary files from Docker image
+- `render.yaml` - Render.com automatic deployment configuration
+
+---
+
 **Notes:**
 - The form posts via AJAX to `save_data.php`. Submissions are appended to `registrations.txt` in the same folder.
 - For a production app, use a proper database and secure authentication. This is a demo/assignment project.
@@ -78,5 +161,6 @@ php -S localhost:8000
 - JavaScript (ES6+)
 - jQuery 3.6.0 (AJAX, DOM manipulation, event handling)
 - PHP (server-side processing, file I/O)
+- Docker (containerization)
 
 Enjoy! If you need help with deployment or enhancements, feel free to ask.

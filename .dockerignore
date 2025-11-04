@@ -1,0 +1,18 @@
+# Git files
+.git
+.gitignore
+
+# IDE files
+.vscode/
+.idea/
+
+# OS files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Documentation (optional)
+README.md
+
+# Logs
+*.log

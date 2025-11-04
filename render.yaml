@@ -1,0 +1,12 @@
+services:
+  - type: web
+    name: php-registration-app
+    env: docker
+    region: oregon
+    plan: free
+    branch: main
+    dockerfilePath: ./Dockerfile
+    healthCheckPath: /index.html
+    envVars:
+      - key: PORT
+        value: 80
