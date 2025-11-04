@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Registration Portal</title>
+
+    <!-- ✅ jQuery CDN -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <style>
+        body {
+            font-family: "Segoe UI", sans-serif;
+            background: linear-gradient(135deg, #000000, #1f1f1f);
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 0;
+            color: white;
+        }
+
+        .container {
+            background-color: rgba(255, 255, 255, 0.08);
+            padding: 35px;
+            border-radius: 15px;
+            box-shadow: 0 0 25px rgba(255, 255, 255, 0.2);
+            width: 420px;
+            text-align: center;
+            backdrop-filter: blur(10px);
+        }
+
+        h2 {
+            color: #f7c873;
+            margin-bottom: 25px;
+            letter-spacing: 1px;
+        }
+
+        label {
+            display: block;
+            text-align: left;
+            margin-left: 10%;
+            margin-top: 12px;
+            font-weight: bold;
+        }
+
+        input, select {
+            width: 80%;
+            padding: 10px;
+            margin-top: 5px;
+            border: none;
+            border-radius: 6px;
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            font-size: 15px;
+            outline: none;
+            transition: background 0.3s;
+        }
+
+        input:focus, select:focus {
+            background: rgba(255, 255, 255, 0.35);
+        }
+
+        button {
+            margin-top: 20px;
+            padding: 10px 25px;
+            background-color: #f7c873;
+            color: black;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        button:hover {
+            background-color: #ffd57a;
+        }
+
+        #successMsg {
+            display: none;
+            margin-top: 15px;
+            color: #9fff9c;
+            font-weight: bold;
+        }
+
+        #errorMsg {
+            display: none;
+            margin-top: 15px;
+            color: #ff7777;
+            font-weight: bold;
+        }
+
+        .link-btn {
+            background: none;
+            color: #f7c873;
+            border: 1px solid #f7c873;
+            padding: 8px 20px;
+            margin-top: 15px;
+            border-radius: 6px;
+        }
+
+        .link-btn:hover {
+            background-color: #f7c873;
+            color: black;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h2>📝 User Registration</h2>
+        <form id="regForm" method="POST">
+            <label for="fullname">Full Name:</label>
+            <input type="text" id="fullname" name="fullname" required>
+
+            <label for="email">Email Address:</label>
+            <input type="email" id="email" name="email" required>
+
+            <label for="gender">Gender:</label>
+            <select id="gender" name="gender" required>
+                <option value="" disabled selected>Choose...</option>
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
+                <option value="Other">Other</option>
+            </select>
+
+            <label for="age">Age:</label>
+            <input type="number" id="age" name="age" required min="1">
+
+            <button type="submit">Register</button>
+        </form>
+
+        <div id="successMsg">✅ Registration saved successfully!</div>
+        <div id="errorMsg">❌ Something went wrong. Try again.</div>
+
+        <button class="link-btn" id="viewDataBtn">📄 View All Registrations</button>
+    </div>
+
+    <script>
+        $(document).ready(function() {
+
+            // Handle form submission with AJAX
+            $("#regForm").on("submit", function(e) {
+                e.preventDefault();
+
+                const formData = $(this).serialize();
+
+                $.ajax({
+                    url: "save_data.php",
+                    type: "POST",
+                    data: formData,
+                    success: function(response) {
+                        if (response.trim() === "success") {
+                            $("#successMsg").fadeIn().delay(2000).fadeOut();
+                            $("#regForm")[0].reset();
+                        } else {
+                            $("#errorMsg").fadeIn().delay(2000).fadeOut();
+                        }
+                    },
+                    error: function() {
+                        $("#errorMsg").fadeIn().delay(2000).fadeOut();
+                    }
+                });
+            });
+
+            // Redirect to show_data.php
+            $("#viewDataBtn").click(function() {
+                window.location.href = "show_data.php";
+            });
+        });
+    </script>
+
+</body>
+</html>

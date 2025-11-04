@@ -1,0 +1,15 @@
+# Registration data file (optional - uncomment if you don't want to track user data)
+# registrations.txt
+
+# PHP temporary files
+*.log
+*.tmp
+
+# IDE files
+.vscode/
+.idea/
+
+# OS files
+.DS_Store
+Thumbs.db
+desktop.ini
