@@ -5,15 +5,22 @@ This web application provides an HTML/CSS/JavaScript (jQuery) registration form 
 **Files included:**
 
 - `index.html` — registration form with jQuery AJAX, client-side validation, and animated feedback messages.
-- `save_data.php` — receives POST requests, sanitizes input (full name, email, gender, age), appends to `registrations.txt`, returns "success" or "error" text.
+- `save_data.php` — receives POST requests, sanitizes input (full name, email, phone, gender, age), validates Gmail and phone format, appends to `registrations.txt`, returns "success" or error message.
 - `show_data.php` — reads `registrations.txt` and displays entries in a styled table.
 - `registrations.txt` — data file (created empty, populated on first submission).
 
 **Fields collected:**
 - Full Name
-- Email Address
+- Email Address (Gmail only - must end with @gmail.com)
+- Phone Number (exactly 10 digits)
 - Gender (Male/Female/Other)
 - Age
+
+**Validation:**
+- ✅ Email must be a Gmail address (@gmail.com)
+- ✅ Phone number must be exactly 10 digits (no spaces or special characters)
+- ✅ All fields are required
+- ✅ Client-side and server-side validation
 
 **How to run locally (Windows PowerShell):**
 

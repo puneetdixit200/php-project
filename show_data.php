@@ -27,15 +27,16 @@ a { color: #60a5fa; text-decoration: none; }
 if (file_exists($file)) {
     $lines = file($file, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
     if (count($lines) > 0) {
-        echo "<table><tr><th>Full Name</th><th>Email</th><th>Gender</th><th>Age</th></tr>";
+        echo "<table><tr><th>Full Name</th><th>Email</th><th>Phone</th><th>Gender</th><th>Age</th></tr>";
         foreach ($lines as $line) {
             // Parse saved line
-            if (preg_match('/Full Name: (.*?) \| Email: (.*?) \| Gender: (.*?) \| Age: (.*)/', $line, $matches)) {
+            if (preg_match('/Full Name: (.*?) \| Email: (.*?) \| Phone: (.*?) \| Gender: (.*?) \| Age: (.*)/', $line, $matches)) {
                 $full = htmlspecialchars($matches[1], ENT_QUOTES);
                 $email = htmlspecialchars($matches[2], ENT_QUOTES);
-                $gender = htmlspecialchars($matches[3], ENT_QUOTES);
-                $age = htmlspecialchars($matches[4], ENT_QUOTES);
-                echo "<tr><td>$full</td><td>$email</td><td>$gender</td><td>$age</td></tr>";
+                $phone = htmlspecialchars($matches[3], ENT_QUOTES);
+                $gender = htmlspecialchars($matches[4], ENT_QUOTES);
+                $age = htmlspecialchars($matches[5], ENT_QUOTES);
+                echo "<tr><td>$full</td><td>$email</td><td>$phone</td><td>$gender</td><td>$age</td></tr>";
             }
         }
         echo "</table>";
