@@ -44,11 +44,29 @@ php -S localhost:8000
 
 **Deploying to Replit:**
 
-1. Go to https://replit.com and create a new Repl.
-2. Choose "Import from GitHub" (if you push this repo) or create a new Repl and upload these files.
-3. Choose a Repl type that supports PHP (e.g., "PHP Web Server").
-4. Upload `index.html`, `save_data.php`, `show_data.php`, and `registrations.txt` into the root of the Repl.
-5. Click Run. Replit will serve the files; open the provided web URL.
+### Option 1: Import from GitHub (Recommended)
+1. Go to https://replit.com
+2. Click "Create Repl"
+3. Select "Import from GitHub"
+4. Paste: `https://github.com/puneetdixit200/php-project`
+5. Click "Import from GitHub"
+6. Click "Run" - Your app will be live instantly!
+
+### Option 2: Manual Upload
+1. Go to https://replit.com and create a new Repl
+2. Choose "PHP Web Server" template
+3. Upload all project files
+4. Click "Run"
+
+**Replit Configuration:**
+- `.replit` - Automatically starts PHP server on port 8000
+- `replit.nix` - Specifies PHP 8.3 and required extensions
+- The app will be accessible via Replit's provided URL
+
+**Important for Replit:**
+- The server runs on `0.0.0.0:8000` (accessible externally)
+- `registrations.txt` will persist in the Repl storage
+- Your app gets a public URL like `https://php-project.username.repl.co`
 
 **Notes:**
 - The form posts via AJAX to `save_data.php`. Submissions are appended to `registrations.txt` in the same folder.
